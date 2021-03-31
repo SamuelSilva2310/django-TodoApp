@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container justify-content-sm-center">
+    <div class="row m-4">
+        <div class="col">
+            <ul class="list-group justify-content-sm-center">
+                {% for task in tasks %}
+                <li class="list-group-item align-items-center">{{task.task_text}}
+                    <div class="float-end">
+                        <form action="delete_task/{{task.id}}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    </div>
+{% endblock content%}
