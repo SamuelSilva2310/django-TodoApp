@@ -12,6 +12,14 @@
         integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 
     <title>TO DO APP</title>
+
+    <style>
+    .hello-msg{
+        font-size: 18px;
+        color: #fff;
+        margin-right: 20px;
+    }
+        </style>
 </head>
 
 <body>
@@ -21,6 +29,9 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Navbar</a>
         </div>
+
+        <span class="hello-msg">Hello, {{request.user}}</span>
+        <span ><a class="hello-msg" href="{% url 'myTodoApp:logout' %}">Logout</a></span>
     </nav>
 
     <div class="container justify-content-sm-center">
@@ -30,7 +41,7 @@
         
             <div class="row m-4 ">
                 <div class="col mb-4">
-                    <form class="row row-cols-lg-auto g-3 align-items-center" action="new_task" method="POST">
+                    <form class="row row-cols-lg-auto g-3 align-items-center" action="{% url 'myTodoApp:new_task' %}" method="POST">
                         {% csrf_token %}
                         <div class="col-12">
                             <div class="input-group">
