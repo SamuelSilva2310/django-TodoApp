@@ -27,7 +27,7 @@
     <!-- NAVIGATION-->
     <nav class="navbar navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="/">Navbar</a>
         </div>
 
         <span class="hello-msg">Hello, {{request.user}}</span>
@@ -36,28 +36,17 @@
 
     <div class="container justify-content-sm-center">
     <div class="container justify-content-center m-4">
-        <h2>Add New Task</h2>
-        <!-- INPUT NEW TASK -->
-        
-            <div class="row m-4 ">
-                <div class="col mb-4">
-                    <form class="row row-cols-lg-auto g-3 align-items-center" action="{% url 'myTodoApp:new_task' %}" method="POST">
-                        {% csrf_token %}
-                        <div class="col-12">
-                            <div class="input-group">
-                                <input type="text" class="form-control mb-2 mr-sm-2" name="task"
-                                    placeholder="Enter Task..." required>
-                            </div>
-                        </div>
 
-                        <div class="col-12">
-                            <button type="submit" class="btn btn-primary mb-2">Submit</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+        {% block title %}
+        {% endblock title%}
 
+
+
+        <!-- FORM FOR LIST OR TASK -->
+        {% block form %}
+        {% endblock form%}
+            
+        <!-- DISPLAY CONTENT -->
         {% block content %}
         {% endblock content%}
     </div>

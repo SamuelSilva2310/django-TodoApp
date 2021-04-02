@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+<h2>Add New List</h2>
+{% endblock title%}
+
+
+{% block form %}
+<div class="row m-4 ">
+                <div class="col mb-4">
+                    <form class="row row-cols-lg-auto g-3 align-items-center" action="{% url 'myTodoApp:new_list' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="col-12">
+                            <div class="input-group">
+                                <input type="text" class="form-control mb-2 mr-sm-2" name="list_name"
+                                    placeholder="Enter List Name..." required>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    {% endblock form%}
+
+
+
+
+
+{% block content %}
+<div class="container justify-content-sm-center">
+    <div class="row m-4">
+        <div class="col">
+            <ul class="list-group justify-content-sm-center">
+                {% for todoList in request.user.todolist.all %}
+                <li class="list-group-item align-items-center"><a href="{% url 'myTodoApp:list_task' todoList.id %}">{{todoList.name}}</a>
+                    <div class="float-end">
+                        <form action="{% url 'myTodoApp:delete_list' todoList.id %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    </div>
+{% endblock content%}

@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect
+from django.urls import reverse
 from django.utils import timezone
 from django.contrib.auth.forms import UserCreationForm
 from .forms import CreateUserForm
@@ -52,34 +53,65 @@ def logoutUser(request):
     return redirect('myTodoApp:login')
 
 ##########################################
-#HOME PAGE
-    
+
+##########################################
+            #LISTS
+########################################## 
+
 @login_required(login_url= 'myTodoApp:login')
 def home(request):
-    """This function defines the home page, it should load all tasks
+    """This function defines the home page, it should load all TodoLists
     """
-    tasks = Task.objects.all().order_by('-task_creation_date')
+     
     front_end_stuff = {
-        'tasks' : tasks,
+        'todoLists' : request.user.todolist.all().order_by('-creation_date'),
     }
-    return render(request, 'myTodoApp/index.html',front_end_stuff)
+    return render(request, 'myTodoApp/lists.html')
+
 
 @login_required(login_url= 'myTodoApp:login')
-def new_task(request):
-    task = request.POST['task']
-    Task.objects.create(task_text=task, task_creation_date=timezone.now())
+def new_List(request):
+    """Creates a new List, stores and saves inside the user lists database
+
+    """
+    list_name = request.POST['list_name']
+    t = ToDoList(name=list_name)
+    t.save()
+    request.user.todolist.add(t)
     return redirect("myTodoApp:home")
 
 @login_required(login_url= 'myTodoApp:login')
-def delete_task(request, task_id):
+def delete_List(request, list_id):
+    request.user.todolist.get(id=list_id).delete()
+    return redirect("myTodoApp:home")
+
+
+
+@login_required(login_url= 'myTodoApp:login')
+def list_task(request, list_id):
+    list = ToDoList.objects.get(id=list_id)
+    tasks = list.task_set.all()
+    context = {
+        'tasks': tasks,
+        'list_id': list_id,
+    }
+    return render(request, 'myTodoApp/tasks.html', context=context)
+
+
+##########################################
+            #TASKS
+########################################## 
+
+@login_required(login_url= 'myTodoApp:login')
+def new_task(request,list_id):
+    task_text = request.POST['task_text']
+    list = ToDoList.objects.get(id=list_id)
+    list.task_set.create(task_text=task_text)
+    return redirect(reverse('myTodoApp:list_task',args=(list_id,)))
+
+@login_required(login_url= 'myTodoApp:login')
+def delete_task(request,task_id):
     Task.objects.get(id=task_id).delete()
     return redirect("myTodoApp:home")
+   
 
-
-@login_required(login_url= 'myTodoApp:login')
-def user_task(request):
-    tasks = Task.objects.filter(user="1")
-    front_end_stuff = {
-        'tasks' : tasks,
-    }
-    return render(request, 'myTodoApp/index.html',front_end_stuff)
