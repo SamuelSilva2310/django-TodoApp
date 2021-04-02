@@ -24,7 +24,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = 'lru290%i$o3i2$whtl1z1+iqi=#qfmi&b%*!^9e(@#wbwq82o9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['caturra-todo-app.herokuapp.com','127.0.0.1']
 
