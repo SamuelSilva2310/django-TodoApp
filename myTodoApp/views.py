@@ -110,8 +110,8 @@ def new_task(request,list_id):
     return redirect(reverse('myTodoApp:list_task',args=(list_id,)))
 
 @login_required(login_url= 'myTodoApp:login')
-def delete_task(request,task_id):
+def delete_task(request,list_id,task_id):
     Task.objects.get(id=task_id).delete()
-    return redirect("myTodoApp:home")
+    return redirect(reverse('myTodoApp:list_task',args=(list_id,)))
    
 
