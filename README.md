@@ -20,10 +20,10 @@
     <img src="https://github.com/SamuelSilva2310/Craigs-Clone-Django/blob/main/readme_img/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">My First Django Project</h3>
+  <h3 align="center">My Django Todo-App</h3>
 
   <p align="center">
-    An awesome CraigsList UI!
+    An awesome To do List!
   </p>
 </p>
 
