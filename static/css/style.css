@@ -10,7 +10,7 @@
 
 
 :root {
-	--clr-dominant: #C24E6F;
+	--clr-dominant: #8ac7bd;
 	--clr-complementary: #ffffff;
 	--clr-accent: #F5ECFF;
 	--clr-accent2: #69BAA4;
@@ -68,6 +68,47 @@ a, u{
     flex-direction: column;
     align-items: center;
 }
+
+.user-profile{
+	display: flex;
+	align-items:center;
+	justify-content: center;
+}
+
+.user-profile a{
+	text-decoration: none; 
+    color: var(--clr-complementary);
+    letter-spacing: 1px;
+    text-align: left;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.2s ease-in-out;
+}	
+
+.user-profile a:hover{
+	color: var(--clr-accent2)
+}
+
+.user-picture{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+}
+
+.user-picture img{
+	clip-path: circle();
+    max-width: 90px;
+    max-height: auto;
+}
+
+.user-picture h3{
+	color: black;
+}
+
+
+
 
 .sidenav-link{
     padding: 10%;

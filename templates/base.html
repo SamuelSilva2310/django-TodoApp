@@ -25,6 +25,15 @@
     <!-- NAVBAR -->
     <nav class="sidenav-container">
 
+
+        <div class="user-profile">
+            <div class="user-picture">
+                <img src="{% static '/img/user.png' %}" alt="">
+                <h3>{{request.user}}</h3>
+            </div>
+            <a href="{% url 'myTodoApp:logout' %}"><h3>Logout</h3></a>
+        </div>
+
         <!-- NAVLINKS -->
         <div id="mySidenav" class="sidenav">
             <div class="sidenav-link">
