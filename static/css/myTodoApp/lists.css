@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+	background-image: linear-gradient(45deg, #7175da, #9790F2);
+	font-family: 'Muli', sans-serif;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+a, u {
+    text-decoration: none;
+}
+
+.todoList-container{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	min-height: 80vh;
+}
+
+
+
+.todoList {
+	background-color: #fff;
+	border-radius: 10px;
+	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+	display: flex;
+	max-width: 700px;
+	margin: 20px;
+	overflow: hidden;
+	width: 700px;
+}
+
+.todoList h6 {
+	opacity: 0.6;
+	margin: 0;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+
+.todoList h2 {
+	letter-spacing: 1px;
+	margin: 10px 0;
+}
+
+.todoList-preview {
+	background-color: #2A265F;
+	color: #fff;
+	padding: 30px;
+	max-width: 250px;
+}
+
+.todoList-preview p{
+	color: #fff;
+	display: inline-block;
+	font-size: 12px;
+	opacity: 0.6;
+	margin-top: 30px;
+	text-decoration: none;
+}
+
+.todoList-info {
+	padding: 30px;
+	position: relative;
+	width: 100%;
+}
+
+.progress-container {
+	position: absolute;
+	top: 30px;
+	right: 30px;
+	text-align: right;
+	width: 150px;
+}
+
+.progress {
+	background-color: #ddd;
+	border-radius: 3px;
+	height: 5px;
+	width: 100%;
+}
+
+.progress-done {
+	border-radius: 3px;
+	background-color: #2A265F;
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 5px;
+	width: 0%;
+}
+
+.progress-text {
+	font-size: 10px;
+	opacity: 0.6;
+	letter-spacing: 1px;
+}
+
+.list-bnts{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	text-align: center;
+}
+
+.btns-helper{
+	margin-top: 50px;
+	display: flex;
+	justify-content: flex-end;
+	text-align: center;
+}
+
+.btn{
+	border: 0;
+	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+	color: #fff;
+	font-size: 16px;
+	outline: none;
+}
+
+
+.btn:hover{
+    cursor: pointer;
+    transform: translateY(-5px);
+}
+
+.btn-view {
+	border-radius: 50px;
+	background-color: #2A265F;
+	letter-spacing: 1px;
+	font-weight: bold;
+    transition: 0.3s ease-out;
+	padding: 12px 25px;
+	margin-right: 3%;
+}
+
+.btn-delete{
+	text-align: center;
+	background-color: #e03a42;
+	border-radius: 50%;
+	letter-spacing: 1px;
+    transition: 0.3s ease-out;
+	font-size: 30px;
+	width: 40px;
+	height: 40px;
+}

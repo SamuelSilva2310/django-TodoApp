@@ -62,10 +62,7 @@ def logoutUser(request):
 def home(request):
     """This function defines the home page, it should load all TodoLists
     """
-     
-    front_end_stuff = {
-        'todoLists' : request.user.todolist.all().order_by('-creation_date'),
-    }
+    
     return render(request, 'myTodoApp/lists.html')
 
 
@@ -75,7 +72,8 @@ def new_List(request):
 
     """
     list_name = request.POST['list_name']
-    t = ToDoList(name=list_name)
+    list_type = request.POST['list-type']
+    t = ToDoList(name=list_name,list_type=list_type)
     t.save()
     request.user.todolist.add(t)
     return redirect("myTodoApp:home")

@@ -1,53 +1,76 @@
 {% extends 'base.html' %}
 
-
-{% block title %}
-<h2>Add New List</h2>
-{% endblock title%}
-
-
 {% block form %}
-<div class="row m-4 ">
-                <div class="col mb-4">
-                    <form class="row row-cols-lg-auto g-3 align-items-center" action="{% url 'myTodoApp:new_list' %}" method="POST">
-                        {% csrf_token %}
-                        <div class="col-12">
-                            <div class="input-group">
-                                <input type="text" class="form-control mb-2 mr-sm-2" name="list_name"
-                                    placeholder="Enter List Name..." required>
-                            </div>
-                        </div>
+        <div class="create-list-container">
+          <div class="form-title">
+              <h1>New List</h1>
+          </div>
+          <div class="form-container">
+              <form action="{% url 'myTodoApp:new_list' %}" method="POST" id="create-list-form">
+                {% csrf_token %}
+                  <div class="list-inputs">
+                      <input type="text" name="list_name" id="" placeholder="Enter new list name..." />
 
-                        <div class="col-12">
-                            <button type="submit" class="btn btn-primary mb-2">Submit</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+                      <div class="custom-select">
+                          <select name="list-type">
+                              <option value="PERSONAL">Personal</option>
+                              <option value="PROFESSIONAL">Professioal</option>
+                              <option value="SCRATCH">Scratch</option>
+                          </select>
+                      </div>
+                  </div>
+                  <button type="submit"><i class="fas fa-plus"></i> Add</button>
+              </form>
+          </div>
+      </div>
     {% endblock form%}
 
 
-
+      
 
 
 {% block content %}
-<div class="container justify-content-sm-center">
-    <div class="row m-4">
-        <div class="col">
-            <ul class="list-group justify-content-sm-center">
+        <div class="todoLists-container">
                 {% for todoList in request.user.todolist.all %}
-                <li class="list-group-item align-items-center"><a href="{% url 'myTodoApp:list_task' todoList.id %}">{{todoList.name}}</a>
-                    <div class="float-end">
-                        <form action="{% url 'myTodoApp:delete_list' todoList.id %}" method="POST">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
+                <div class="todoList">
+                    <div class="todoList-preview {{todoList.list_type}}">
+                      <h6>List</h6>
+                      <!-- Add List Title Here -->
+                      <h2>{{todoList.name}}</h2>
+                      <!-- Add List Date Here -->
+                      <p>{{todoList.creation_date}}</p>
                     </div>
-                </li>
+                    <div class="todoList-info">
+                      <div class="task-preview">
+                        <h6>Latest Task</h6>
+                        <h2>Task Description</h2>
+                      </div>
+                      <div class="progress-container">
+                        <div class="progress"></div>
+                        <div class="progress-done {{todoList.list_type}}"></div>
+            
+                        <!-- Add Progress Tasks Here -->
+                        <span class="progress-text"> 6/9 Tasks Completed </span>
+                      </div>
+            
+                      <div class="list-bnts">
+                        <div class="btns-helper">
+                          <a href="{% url 'myTodoApp:list_task' todoList.id %}" class="btn btn-view {{todoList.list_type}}"><div>View List</div></a>
+            
+                          <form class="list-btn-form" action="{% url 'myTodoApp:delete_list' todoList.id %}" method="POST">
+                            {% csrf_token %}
+                            <button class="btn btn-delete">
+                              <i class="fas fa-times"></i>
+                            </button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                 {% endfor %}
-            </ul>
+            
         </div>
-    </div>
-    </div>
+   
+
 {% endblock content%}
