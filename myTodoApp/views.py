@@ -62,7 +62,6 @@ def logoutUser(request):
 def home(request):
     """This function defines the home page, it should load all TodoLists
     """
-    
     return render(request, 'myTodoApp/lists.html')
 
 
@@ -85,13 +84,14 @@ def delete_List(request, list_id):
 
 
 
+#Enter a Specific List and display all Tasks
 @login_required(login_url= 'myTodoApp:login')
 def list_task(request, list_id):
     list = ToDoList.objects.get(id=list_id)
-    tasks = list.task_set.all()
     context = {
-        'tasks': tasks,
+        'tasks': list.task_set.all(),
         'list_id': list_id,
+        'list_name': list.name,
     }
     return render(request, 'myTodoApp/tasks.html', context=context)
 
@@ -102,14 +102,20 @@ def list_task(request, list_id):
 
 @login_required(login_url= 'myTodoApp:login')
 def new_task(request,list_id):
-    task_text = request.POST['task_text']
     list = ToDoList.objects.get(id=list_id)
-    list.task_set.create(task_text=task_text)
+    list.task_set.create(task_text=request.POST['task_text'])
     return redirect(reverse('myTodoApp:list_task',args=(list_id,)))
 
 @login_required(login_url= 'myTodoApp:login')
 def delete_task(request,list_id,task_id):
     Task.objects.get(id=task_id).delete()
+    return redirect(reverse('myTodoApp:list_task',args=(list_id,)))
+
+@login_required(login_url= 'myTodoApp:login')
+def complete_task(request,list_id,task_id):
+    print("MADE IT--------------")
+    Task.objects.filter(id=task_id).update(task_complete = not Task.objects.get(id=task_id).task_complete)
+    print(Task.objects.get(id=task_id).task_complete)
     return redirect(reverse('myTodoApp:list_task',args=(list_id,)))
    
 

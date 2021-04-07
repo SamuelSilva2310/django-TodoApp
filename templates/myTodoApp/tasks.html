@@ -8,45 +8,58 @@
 
 
 {% block form %}
-<div class="row m-4 ">
-                <div class="col mb-4">
-                    <form class="row row-cols-lg-auto g-3 align-items-center" action="{% url 'myTodoApp:new_task' list_id %}" method="POST">
-                        {% csrf_token %}
-                        <div class="col-12">
-                            <div class="input-group">
-                                <input type="text" class="form-control mb-2 mr-sm-2" name="task_text"
-                                    placeholder="Enter List Name..." required>
-                            </div>
-                        </div>
-
-                        <div class="col-12">
-                            <button type="submit" class="btn btn-primary mb-2">Submit</button>
-                        </div>
-                    </form>
-                </div>
+<div class="create-list-container">
+    <div class="form-title">
+        <h1>{{list_name}}</h1>
+    </div>
+    <div class="form-container">
+        <form action="{% url 'myTodoApp:new_task' list_id%}" method="POST" id="create-list-form">
+          {% csrf_token %}
+            <div class="list-inputs">
+                <input type="text" name="task_text" id="" placeholder="Enter new task..." />
             </div>
-        </div>
+            <button type="submit"><i class="fas fa-plus"></i> Add</button>
+        </form>
+    </div>
+</div>
     {% endblock form%}
 
 
 
+
 {% block content %}
-<div class="container justify-content-sm-center">
-    <div class="row m-4">
-        <div class="col">
-            <ul class="list-group justify-content-sm-center">
-                {% for task in tasks %}
-                <li class="list-group-item align-items-center">{{task.task_text}}
-                    <div class="float-end">
-                        <form action="{% url 'myTodoApp:delete_task' list_id task.id %}" method="POST">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
-                    </div>
-                </li>
-                {% endfor %}
-            </ul>
+<div class="tasks-container">
+    {% for task in tasks %}
+    <div class="task-container">
+        <div class="task">
+        <div class="task-text">
+            <h4>{{task.task_text}}</h4>
+           
         </div>
+            <form method="POST" class="task-complete-button" action="{% url 'myTodoApp:complete_task' list_id task.id%}">
+                {% csrf_token %}
+                {% if task.task_completed is not False %}
+                <button class="btn btn-status complete">
+                    <i class="fas fa-check"></i>
+                    Complete
+                </button>
+                {% endif %}
+                {% if task.task_completed is False %}
+                <button class="btn btn-status ongoing">
+                    <i class="fas fa-check"></i>
+                    Ongoing
+                </button>
+                {% endif %}
+                
+            </form>
+        </div>
+        <form action="{% url 'myTodoApp:delete_task' list_id task.id%}" class="list-btn-form" method="POST">
+            {% csrf_token %}
+            <button class="btn btn-delete">
+                <i class="fas fa-times"></i>
+            </button>
+        </form>
     </div>
-    </div>
+    {% endfor %}
+</div>
 {% endblock content %}

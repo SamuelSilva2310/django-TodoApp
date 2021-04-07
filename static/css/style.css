@@ -76,6 +76,7 @@ a, u{
 }
 
 .user-profile a{
+	
 	text-decoration: none; 
     color: var(--clr-complementary);
     letter-spacing: 1px;
@@ -392,4 +393,88 @@ select{
 
 .SCRATCH{
 	background-color: var(--list-clr-scratch);
+}
+
+
+/*-------------------------*/
+/* TASKS LIST */
+.tasks-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 2%;
+
+}
+
+.task-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.task{
+    display: flex;
+    align-items: center;
+    position: relative;
+    background-color: var(--clr-complementary);
+    border: 2px solid #bebebe;
+    width: 500px;
+    height: 40px;
+    margin: 1%;
+    border-radius: 5px;
+    transition: 0.2s ease-in-out;
+}
+
+.task-text{
+    padding: 2%;
+}
+
+.task:hover{
+    cursor: pointer;
+	transform: scale(1.01);
+}
+
+.task-complete-button{
+    position:absolute;
+    padding: 2%;
+    right: 0;
+}
+
+
+.btn{
+    text-align: center;
+    border: none;
+    color: var(--clr-complementary);
+}
+
+.btn-delete{
+
+	background-color: #e03a42;
+	border-radius: 50%;
+	letter-spacing: 1px;
+    transition: 0.3s ease-out;
+	font-size: 15px;
+	width: 20px;
+	height: 20px;
+    margin: 5%;
+}
+
+.btn-delete:hover{
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.btn-status{
+    width: 90px;
+    height: 25px;
+    border-radius:20px;
+    background-color: #c58300;
+}
+
+.complete{
+    background-color: #2d8848;
 }

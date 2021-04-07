@@ -106,3 +106,35 @@ Project Link: [https://github.com/SamuelSilva2310/Craigs-Clone-Django](https://g
 
 
 
+{% block content %}
+<div class="tasks-container">
+    {% for task in tasks %}
+    <div class="task-container">
+        <div class="task">
+        <div class="task-text">
+            <h4>{{task.task_text}}</h4>
+        </div>
+            <form method="POST" class="task-complete-button" action="{% url 'myTodoApp:complete_task' list.id task.id %}">
+                {% csrf_token %}
+                {% if not task.task_completed %}
+                <button class="btn btn-status ongoing">
+                    On Going
+                </button>
+                {% else %}
+                <button class="btn btn-status complete">
+                    <i class="fas fa-check"></i>
+                    Complete
+                </button>
+                {% endif %}
+                
+            </form>
+        </div>
+        <form action="{% url 'myTodoApp:delete_task' list.id task.id %}" class="list-btn-form" method="POST">
+            <button class="btn btn-delete">
+                <i class="fas fa-times"></i>
+            </button>
+        </form>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}
