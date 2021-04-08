@@ -83,8 +83,9 @@ To to use the app we just crearte an account and login. Then on the main page we
 <p align="center">
   <img src="https://github.com/SamuelSilva2310/django-TodoApp/blob/main/imagesReadMe/task.png?raw=true" alt="CaturrasList"/><br/>
 </p>
+
 <!-- CONTACT -->
-##Contact
+## Contact
 
 Samuel Silva - [@https://www.instagram.com/samuel__2310/](https://www.instagram.com/samuel__2310/) - samuelsilva2310@gmail.com
 
