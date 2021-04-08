@@ -52,38 +52,35 @@
 
 
 
-As a Upcomming programmer and into python, I decided to start learning [Django](https://www.djangoproject.com/). I watched a tutorial guide on youtube (https://www.youtube.com/watch?v=JT80XhYJdBw&t=24054s&ab_channel=CleverProgrammer)  
+As a Upcomming programmer and into python, I decided to start learning [Django](https://www.djangoproject.com/).
+For my first "Big" project i decided to create a To-Do App
 
 
 Here's why:
-* I followed a tutorial guide so that I can understand how Django actually works 
-* This Project is useful, both for my understanding about programming, and to give CraigsList a better looking UI.
-* I feel that i know a lot more now and I am ready to start implementing **Django** on my projects 
+* A Todo App goes over a lot of basicconcepts that are needed at a more compplex level (Ex:. Create Users, Create Items, Database, etc..)
+* I made this with the objective to learn and practice.
+* I feel that I know a lot more now and I am ready to start implementing **Django** on a lot more of my projects 
 
-To to use the app we just type the product or service we're searching for, then the app makes a request to craigslist with our search query.
-After making the request, it uses [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/) to scrape data, by manipulating all data we can display to the user all results which contain the title, image, price and a link so that when a specific product is clicked it will send the user to the craigslist add.
+To to use the app we just crearte an account and login. Then on the main page we have a list of out **Lists**, each **List** has it's own tasks, a List can have 3 different categories (Personal, Scratch and Professional). When we open up a List we can add **Tasks**, remove them and mark them as **Completed** or **Ongoing**.
 
 ### Built With
 * [Django](https://www.djangoproject.com/)
-* [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
-* [Materialize](https://materializecss.com/getting-started.html)
-
-
+* 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-- **First Step:**  Type what we want to search on CraigsList for.
+- **First Step:** Create an Account And Login
 <p align="center">
-  <img src="https://github.com/SamuelSilva2310/Craigs-Clone-Django/blob/main/readme_img/Menu.png" alt="CaturrasList"/><br/>
-  Much Better Looking
+  <img src="#" alt="CaturrasList"/><br/>
 </p>
 
-- **Second Step:**  Search and Browse Results.
+- **Second Step:**  Create and Open a List.
 <p align="center">
-  <img src="https://github.com/SamuelSilva2310/Craigs-Clone-Django/blob/main/readme_img/Captura%20de%20ecr%C3%A3%202021-03-30%20095708.png" alt="CaturrasList"/><br/>
-  Browse Results<br/>
-  <img src="https://github.com/SamuelSilva2310/Craigs-Clone-Django/blob/main/readme_img/Captura%20de%20ecr%C3%A3%202021-03-30%20095756.png" alt="CaturrasList"/><br/>
+  <img src="#" alt="CaturrasList"/><br/>
+  <img src="#" alt="CaturrasList"/><br/>
 </p>
+
+- **Third Step:**  Create a Task.
 
 <!-- CONTACT -->
 ## Contact
@@ -96,45 +93,11 @@ Project Link: [https://github.com/SamuelSilva2310/Craigs-Clone-Django](https://g
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
-* [CleverProgrammer](https://www.youtube.com/channel/UCqrILQNl5Ed9Dz6CGMyvMTQ)
 * [Django](https://www.djangoproject.com/)
-* [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
-* [Materialize](https://materializecss.com/getting-started.html)
 
 
 
 
 
 
-{% block content %}
-<div class="tasks-container">
-    {% for task in tasks %}
-    <div class="task-container">
-        <div class="task">
-        <div class="task-text">
-            <h4>{{task.task_text}}</h4>
-        </div>
-            <form method="POST" class="task-complete-button" action="{% url 'myTodoApp:complete_task' list.id task.id %}">
-                {% csrf_token %}
-                {% if not task.task_completed %}
-                <button class="btn btn-status ongoing">
-                    On Going
-                </button>
-                {% else %}
-                <button class="btn btn-status complete">
-                    <i class="fas fa-check"></i>
-                    Complete
-                </button>
-                {% endif %}
-                
-            </form>
-        </div>
-        <form action="{% url 'myTodoApp:delete_task' list.id task.id %}" class="list-btn-form" method="POST">
-            <button class="btn btn-delete">
-                <i class="fas fa-times"></i>
-            </button>
-        </form>
-    </div>
-    {% endfor %}
-</div>
-{% endblock content %}
+
