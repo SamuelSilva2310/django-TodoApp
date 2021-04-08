@@ -71,17 +71,18 @@ To to use the app we just crearte an account and login. Then on the main page we
 
 - **First Step:** Create an Account And Login
 <p align="center">
-  <img src="#" alt="CaturrasList"/><br/>
+  <img src="https://github.com/SamuelSilva2310/django-TodoApp/blob/main/imagesReadMe/Login.png?raw=true" alt="CaturrasList"/><br/>
 </p>
 
 - **Second Step:**  Create and Open a List.
 <p align="center">
-  <img src="#" alt="CaturrasList"/><br/>
-  <img src="#" alt="CaturrasList"/><br/>
+  <img src="https://github.com/SamuelSilva2310/django-TodoApp/blob/main/imagesReadMe/Lists.png?raw=true" alt="CaturrasList"/><br/>
 </p>
 
 - **Third Step:**  Create a Task.
-
+<p align="center">
+  <img src="https://github.com/SamuelSilva2310/django-TodoApp/blob/main/imagesReadMe/task.png?raw=true" alt="CaturrasList"/><br/>
+</p>
 <!-- CONTACT -->
 ## Contact
 
