@@ -45,13 +45,14 @@
                         <h6>Latest Task</h6>
                         <h2>{{todoList.task_set.all|dictsortreversed:"creation_date"|first|default:"No Tasks Created"}}</h2>
                       </div>
-                      <div class="progress-container">
+                     
+                     
+                      <!-- ADD THIS FOR PROGRESS BAR IN LISTS -->
+                      <!-- <div class="progress-container">
                         <div class="progress"></div>
                         <div class="progress-done {{todoList.list_type}}"></div>
-            
-                        <!-- Add Progress Tasks Here -->
                         <span class="progress-text"> 6/9 Tasks Completed </span>
-                      </div>
+                      </div> -->
             
                       <div class="list-bnts">
                         <div class="btns-helper">
