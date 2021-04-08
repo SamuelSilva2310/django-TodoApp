@@ -9,10 +9,10 @@
               <form action="{% url 'myTodoApp:new_list' %}" method="POST" id="create-list-form">
                 {% csrf_token %}
                   <div class="list-inputs">
-                      <input type="text" name="list_name" id="" placeholder="Enter new list name..." />
+                      <input type="text" name="list_name" id="" placeholder="Enter new list name..."  required/>
 
                       <div class="custom-select">
-                          <select name="list-type">
+                          <select name="list-type" required>
                               <option value="PERSONAL">Personal</option>
                               <option value="PROFESSIONAL">Professioal</option>
                               <option value="SCRATCH">Scratch</option>
@@ -31,7 +31,7 @@
 
 {% block content %}
         <div class="todoLists-container">
-                {% for todoList in request.user.todolist.all %}
+                {% for todoList in request.user.todolist.all|dictsortreversed:"creation_date" %}
                 <div class="todoList">
                     <div class="todoList-preview {{todoList.list_type}}">
                       <h6>List</h6>
@@ -43,7 +43,7 @@
                     <div class="todoList-info">
                       <div class="task-preview">
                         <h6>Latest Task</h6>
-                        <h2>Task Description</h2>
+                        <h2>{{todoList.task_set.all|dictsortreversed:"creation_date"|first|default:"No Tasks Created"}}</h2>
                       </div>
                       <div class="progress-container">
                         <div class="progress"></div>

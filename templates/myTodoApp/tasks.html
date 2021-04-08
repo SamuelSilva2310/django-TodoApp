@@ -16,7 +16,7 @@
         <form action="{% url 'myTodoApp:new_task' list_id%}" method="POST" id="create-list-form">
           {% csrf_token %}
             <div class="list-inputs">
-                <input type="text" name="task_text" id="" placeholder="Enter new task..." />
+                <input type="text" name="task_text" id="" placeholder="Enter new task..." required/>
             </div>
             <button type="submit"><i class="fas fa-plus"></i> Add</button>
         </form>
@@ -29,7 +29,7 @@
 
 {% block content %}
 <div class="tasks-container">
-    {% for task in tasks %}
+    {% for task in tasks|dictsort:"task_complete"%}
     <div class="task-container">
         <div class="task">
         <div class="task-text">
@@ -38,13 +38,13 @@
         </div>
             <form method="POST" class="task-complete-button" action="{% url 'myTodoApp:complete_task' list_id task.id%}">
                 {% csrf_token %}
-                {% if task.task_completed is not False %}
+                {% if task.task_complete is True %}
                 <button class="btn btn-status complete">
                     <i class="fas fa-check"></i>
                     Complete
                 </button>
                 {% endif %}
-                {% if task.task_completed is False %}
+                {% if task.task_complete is False %}
                 <button class="btn btn-status ongoing">
                     <i class="fas fa-check"></i>
                     Ongoing

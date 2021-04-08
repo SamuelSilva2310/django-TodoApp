@@ -351,6 +351,7 @@ select{
 	color: #fff;
 	font-size: 16px;
 	outline: none;
+	padding: 2%;
 }
 
 
@@ -420,7 +421,8 @@ select{
     background-color: var(--clr-complementary);
     border: 2px solid #bebebe;
     width: 500px;
-    height: 40px;
+    max-height: 100px;
+	height: 50px;
     margin: 1%;
     border-radius: 5px;
     transition: 0.2s ease-in-out;
@@ -428,6 +430,7 @@ select{
 
 .task-text{
     padding: 2%;
+	word-wrap: break-word;
 }
 
 .task:hover{
@@ -442,11 +445,7 @@ select{
 }
 
 
-.btn{
-    text-align: center;
-    border: none;
-    color: var(--clr-complementary);
-}
+
 
 .btn-delete{
 
@@ -468,13 +467,11 @@ select{
     text-align: center;
 }
 
-.btn-status{
-    width: 90px;
-    height: 25px;
-    border-radius:20px;
-    background-color: #c58300;
-}
-
 .complete{
     background-color: #2d8848;
+	font-size: 14px;
+}
+
+.ongoing{
+	background-color: #c58300;
 }
